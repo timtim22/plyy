@@ -1,0 +1,484 @@
+/* Animations for the background shapes */
+
+/* Multi-stage animations with different entry/exit points */
+@keyframes shape1-journey {
+  /* First journey: Far left to far right */
+  0% { transform: translateX(-150%); opacity: 0; }
+  2% { transform: translateX(-120%); opacity: 1; }
+  18% { transform: translateX(220%); opacity: 1; }
+  20% { transform: translateX(250%); opacity: 0; }
+  
+  /* Hidden transition period */
+  20.1% { transform: translateY(-100%); opacity: 0; }
+  
+  /* Second journey: Top to bottom */
+  30% { transform: translateY(-100%); opacity: 0; }
+  32% { transform: translateY(-80%); opacity: 1; }
+  48% { transform: translateY(150%); opacity: 1; }
+  50% { transform: translateY(200%); opacity: 0; }
+  
+  /* Hidden transition period */
+  50.1% { transform: translate(150%, -100%); opacity: 0; }
+  
+  /* Third journey: Far top-right to far bottom-left */
+  60% { transform: translate(150%, -100%); opacity: 0; }
+  62% { transform: translate(120%, -80%); opacity: 1; }
+  78% { transform: translate(-170%, 150%); opacity: 1; }
+  80% { transform: translate(-200%, 200%); opacity: 0; }
+  
+  /* Hidden transition period */
+  80.1% { transform: translate(150%, 100%); opacity: 0; }
+  
+  /* Fourth journey: Far bottom-right to far top-left */
+  90% { transform: translate(150%, 100%); opacity: 0; }
+  92% { transform: translate(120%, 80%); opacity: 1; }
+  98% { transform: translate(-170%, -80%); opacity: 1; }
+  100% { transform: translate(-200%, -100%); opacity: 0; }
+}
+
+@keyframes shape3-journey {
+  /* First journey: Far right to far left */
+  0% { transform: translateX(150%); opacity: 0; }
+  2% { transform: translateX(120%); opacity: 1; }
+  18% { transform: translateX(-220%); opacity: 1; }
+  20% { transform: translateX(-250%); opacity: 0; }
+  
+  /* Hidden transition period */
+  20.1% { transform: translateY(100%); opacity: 0; }
+  
+  /* Second journey: Bottom to top, near left edge */
+  30% { transform: translate(-80%, 100%); opacity: 0; }
+  32% { transform: translate(-80%, 80%); opacity: 1; }
+  48% { transform: translate(-80%, -150%); opacity: 1; }
+  50% { transform: translate(-80%, -200%); opacity: 0; }
+  
+  /* Hidden transition period */
+  50.1% { transform: translate(-150%, 100%); opacity: 0; }
+  
+  /* Third journey: Far bottom-left to far top-right */
+  60% { transform: translate(-150%, 100%); opacity: 0; }
+  62% { transform: translate(-120%, 80%); opacity: 1; }
+  78% { transform: translate(170%, -150%); opacity: 1; }
+  80% { transform: translate(200%, -200%); opacity: 0; }
+  
+  /* Hidden transition period */
+  80.1% { transform: translate(-150%, -100%); opacity: 0; }
+  
+  /* Fourth journey: Far top-left to far bottom-right */
+  90% { transform: translate(-150%, -100%); opacity: 0; }
+  92% { transform: translate(-120%, -80%); opacity: 1; }
+  98% { transform: translate(170%, 80%); opacity: 1; }
+  100% { transform: translate(200%, 100%); opacity: 0; }
+}
+
+@keyframes shape4-journey {
+  /* First journey: Top to bottom, far right side */
+  0% { transform: translate(120%, -100%); opacity: 0; }
+  2% { transform: translate(120%, -80%); opacity: 1; }
+  18% { transform: translate(120%, 150%); opacity: 1; }
+  20% { transform: translate(120%, 200%); opacity: 0; }
+  
+  /* Hidden transition period */
+  20.1% { transform: translateX(150%); opacity: 0; }
+  
+  /* Second journey: Far right to far left, top area */
+  30% { transform: translate(150%, -50%); opacity: 0; }
+  32% { transform: translate(120%, -50%); opacity: 1; }
+  48% { transform: translate(-220%, -50%); opacity: 1; }
+  50% { transform: translate(-250%, -50%); opacity: 0; }
+  
+  /* Hidden transition period */
+  50.1% { transform: translate(150%, 100%); opacity: 0; }
+  
+  /* Third journey: Far bottom-right to far top-left */
+  60% { transform: translate(150%, 100%); opacity: 0; }
+  62% { transform: translate(120%, 80%); opacity: 1; }
+  78% { transform: translate(-170%, -150%); opacity: 1; }
+  80% { transform: translate(-200%, -200%); opacity: 0; }
+  
+  /* Hidden transition period */
+  80.1% { transform: translateY(150%); opacity: 0; }
+  
+  /* Fourth journey: Bottom to top, far left side */
+  90% { transform: translate(-120%, 150%); opacity: 0; }
+  92% { transform: translate(-120%, 80%); opacity: 1; }
+  98% { transform: translate(-120%, -80%); opacity: 1; }
+  100% { transform: translate(-120%, -100%); opacity: 0; }
+}
+
+/* Adjust new shape animations for wider movements */
+@keyframes shape5-journey {
+  /* First journey: Far left to far right */
+  0% { transform: translateX(-200%); opacity: 0; }
+  2% { transform: translateX(-150%); opacity: 1; }
+  18% { transform: translateX(250%); opacity: 1; }
+  20% { transform: translateX(300%); opacity: 0; }
+  
+  /* Hidden transition period */
+  20.1% { transform: translate(-150%, -100%); opacity: 0; }
+  
+  /* Second journey: Far top-left to far bottom-right */
+  30% { transform: translate(-150%, -100%); opacity: 0; }
+  32% { transform: translate(-120%, -80%); opacity: 1; }
+  48% { transform: translate(200%, 150%); opacity: 1; }
+  50% { transform: translate(250%, 200%); opacity: 0; }
+  
+  /* Hidden transition period */
+  50.1% { transform: translate(150%, 100%); opacity: 0; }
+  
+  /* Third journey: Bottom to top, far right side */
+  60% { transform: translate(150%, 100%); opacity: 0; }
+  62% { transform: translate(150%, 80%); opacity: 1; }
+  78% { transform: translate(150%, -150%); opacity: 1; }
+  80% { transform: translate(150%, -200%); opacity: 0; }
+  
+  /* Hidden transition period */
+  80.1% { transform: translate(-150%, 100%); opacity: 0; }
+  
+  /* Fourth journey: Far bottom-left to far top-right */
+  90% { transform: translate(-150%, 100%); opacity: 0; }
+  92% { transform: translate(-120%, 80%); opacity: 1; }
+  98% { transform: translate(200%, -80%); opacity: 1; }
+  100% { transform: translate(250%, -100%); opacity: 0; }
+}
+
+@keyframes shape6-journey {
+  /* First journey: Far right to far left, near bottom */
+  0% { transform: translate(200%, 70%); opacity: 0; }
+  2% { transform: translate(150%, 70%); opacity: 1; }
+  18% { transform: translate(-250%, 70%); opacity: 1; }
+  20% { transform: translate(-300%, 70%); opacity: 0; }
+  
+  /* Hidden transition period */
+  20.1% { transform: translate(200%, -60%); opacity: 0; }
+  
+  /* Second journey: Far right to far left, near top */
+  30% { transform: translate(200%, -60%); opacity: 0; }
+  32% { transform: translate(150%, -60%); opacity: 1; }
+  48% { transform: translate(-250%, -60%); opacity: 1; }
+  50% { transform: translate(-300%, -60%); opacity: 0; }
+  
+  /* Hidden transition period */
+  50.1% { transform: translate(-120%, -100%); opacity: 0; }
+  
+  /* Third journey: Top to bottom, far left side */
+  60% { transform: translate(-120%, -100%); opacity: 0; }
+  62% { transform: translate(-120%, -80%); opacity: 1; }
+  78% { transform: translate(-120%, 150%); opacity: 1; }
+  80% { transform: translate(-120%, 200%); opacity: 0; }
+  
+  /* Hidden transition period */
+  80.1% { transform: translate(-200%, 0); opacity: 0; }
+  
+  /* Fourth journey: Far left to far right, center */
+  90% { transform: translate(-200%, 0); opacity: 0; }
+  92% { transform: translate(-150%, 0); opacity: 1; }
+  98% { transform: translate(150%, 0); opacity: 1; }
+  100% { transform: translate(200%, 0); opacity: 0; }
+}
+
+@keyframes shape7-journey {
+  /* First journey: Far top-right to far bottom-left */
+  0% { transform: translate(200%, -100%); opacity: 0; }
+  2% { transform: translate(150%, -80%); opacity: 1; }
+  18% { transform: translate(-220%, 120%); opacity: 1; }
+  20% { transform: translate(-250%, 150%); opacity: 0; }
+  
+  /* Hidden transition period */
+  20.1% { transform: translate(-200%, -100%); opacity: 0; }
+  
+  /* Second journey: Far top-left to far bottom-right */
+  30% { transform: translate(-200%, -100%); opacity: 0; }
+  32% { transform: translate(-150%, -80%); opacity: 1; }
+  48% { transform: translate(220%, 120%); opacity: 1; }
+  50% { transform: translate(250%, 150%); opacity: 0; }
+  
+  /* Hidden transition period */
+  50.1% { transform: translate(-150%, 100%); opacity: 0; }
+  
+  /* Third journey: Bottom to top, far left side */
+  60% { transform: translate(-150%, 100%); opacity: 0; }
+  62% { transform: translate(-150%, 80%); opacity: 1; }
+  78% { transform: translate(-150%, -120%); opacity: 1; }
+  80% { transform: translate(-150%, -150%); opacity: 0; }
+  
+  /* Hidden transition period */
+  80.1% { transform: translate(200%, 0); opacity: 0; }
+  
+  /* Fourth journey: Far right to far left, center */
+  90% { transform: translate(200%, 0); opacity: 0; }
+  92% { transform: translate(150%, 0); opacity: 1; }
+  98% { transform: translate(-150%, 0); opacity: 1; }
+  100% { transform: translate(-200%, 0); opacity: 0; }
+}
+
+@keyframes shape8-journey {
+  /* First journey: Bottom to top, far left side */
+  0% { transform: translate(-180%, 100%); opacity: 0; }
+  2% { transform: translate(-180%, 80%); opacity: 1; }
+  18% { transform: translate(-180%, -120%); opacity: 1; }
+  20% { transform: translate(-180%, -150%); opacity: 0; }
+  
+  /* Hidden transition period */
+  20.1% { transform: translate(180%, 100%); opacity: 0; }
+  
+  /* Second journey: Bottom to top, far right side */
+  30% { transform: translate(180%, 100%); opacity: 0; }
+  32% { transform: translate(180%, 80%); opacity: 1; }
+  48% { transform: translate(180%, -120%); opacity: 1; }
+  50% { transform: translate(180%, -150%); opacity: 0; }
+  
+  /* Hidden transition period */
+  50.1% { transform: translate(-200%, 0); opacity: 0; }
+  
+  /* Third journey: Far left to far right, middle */
+  60% { transform: translate(-200%, 0); opacity: 0; }
+  62% { transform: translate(-150%, 0); opacity: 1; }
+  78% { transform: translate(220%, 0); opacity: 1; }
+  80% { transform: translate(250%, 0); opacity: 0; }
+  
+  /* Hidden transition period */
+  80.1% { transform: translate(0, -100%); opacity: 0; }
+  
+  /* Fourth journey: Top to bottom, middle */
+  90% { transform: translate(0, -100%); opacity: 0; }
+  92% { transform: translate(0, -80%); opacity: 1; }
+  98% { transform: translate(0, 80%); opacity: 1; }
+  100% { transform: translate(0, 100%); opacity: 0; }
+}
+
+/* Button subtle breathing animation */
+@keyframes button-breathing {
+  0% { transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025); }
+  50% { transform: scale(1.015); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.025); }
+  100% { transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025); }
+}
+
+/* Gradient shift animation */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Enhanced blast animation */
+@keyframes blast-effect {
+  0% { transform: scale(1) translate(0, 0); opacity: 1; box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+  10% { transform: scale(1.1) translate(0, 0); opacity: 1; box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+  40% { transform: scale(1.4) translate(0, 0); opacity: 0.8; box-shadow: 0 0 30px 10px rgba(255,255,255,0.6); }
+  100% { transform: scale(0.1) translate(0, 0); opacity: 0; box-shadow: 0 0 40px 15px rgba(255,255,255,0); }
+}
+
+/* Particle animation for blast effect */
+@keyframes particle-effect {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}
+
+/* Shape positions and animations */
+#shape1 {
+  left: 50%;
+  top: 30%;
+  animation: shape1-journey 60s linear infinite;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+#shape3 {
+  left: 50%;
+  top: 40%;
+  animation: shape3-journey 70s linear infinite;
+  animation-delay: -15s; /* Start from a different point in the sequence */
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+#shape4 {
+  left: 50%;
+  top: 50%;
+  animation: shape4-journey 65s linear infinite;
+  animation-delay: -30s; /* Start from a different point in the sequence */
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* New shape styling and animations */
+#shape5 {
+  left: 50%;
+  top: 50%;
+  animation: shape5-journey 75s linear infinite;
+  animation-delay: -10s;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+#shape6 {
+  left: 50%;
+  top: 50%;
+  animation: shape6-journey 68s linear infinite;
+  animation-delay: -25s;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+#shape7 {
+  left: 50%;
+  top: 50%;
+  animation: shape7-journey 72s linear infinite;
+  animation-delay: -5s;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+#shape8 {
+  left: 50%;
+  top: 50%;
+  animation: shape8-journey 62s linear infinite;
+  animation-delay: -18s;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Blast effect classes */
+.blasting {
+  animation: blast-effect 0.4s ease-out forwards;
+  position: relative;
+  z-index: 5;
+  will-change: transform, opacity;
+}
+
+.particle {
+  position: absolute;
+  background-color: currentColor;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  opacity: 0.8;
+  animation: particle-effect 0.6s ease-out forwards;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  pointer-events: none;
+}
+
+/* Container for particles */
+#particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Upload button container */
+.upload-button-container {
+  position: relative;
+  z-index: 10;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Apply breathing animation to the button */
+.upload-button-container button {
+  animation: button-breathing 4s ease-in-out infinite;
+}
+
+/* Animated gradient background */
+.background-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+}
+
+/* Spinner animation for loading state */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  border: 3px solid rgba(203, 213, 225, 0.3);
+  border-radius: 50%;
+  border-top: 3px solid #14b8a6; /* teal-500 */
+  animation: spin 1s linear infinite;
+}
+
+/* Success checkmark animation */
+@keyframes success-appear {
+  0% { transform: scale(0.5); opacity: 0; }
+  40% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+#success-state svg {
+  animation: success-appear 0.5s ease-out forwards;
+}
+
+/* Progress bar animation */
+@keyframes progress-glow {
+  0% { box-shadow: 0 0 5px rgba(20, 184, 166, 0.3); }
+  50% { box-shadow: 0 0 10px rgba(20, 184, 166, 0.5); }
+  100% { box-shadow: 0 0 5px rgba(20, 184, 166, 0.3); }
+}
+
+#progress-bar {
+  will-change: width;
+  animation: progress-glow 3s ease-in-out infinite;
+  transition: width 0.25s ease-out;
+}
+
+/* Job count and progress percentage animations */
+@keyframes count-update {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.count-updated {
+  animation: count-update 0.4s ease-out;
+}
+
+/* Job card appearance animation */
+@keyframes fade-in-up {
+  0% { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.job-card.animate {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+/* Shape container to help with positioning */
+.shape {
+  position: absolute;
+  pointer-events: auto;
+  z-index: 3;
+}
+
+/* Theme-specific styling */
+/* Option 1: Minimalist abstract art */
+.option1-bg {
+  background-color: rgb(228, 228, 231); /* bg-zinc-200 */
+}
+
+/* Option 2: Soft minimal light theme */
+.option2-bg {
+  background-image: linear-gradient(to bottom right, rgb(239, 246, 255), rgb(243, 232, 255));
+}
+
+/* Option 3: Dark with neon gradient */
+.option3-bg {
+  background-color: rgb(17, 24, 39); /* bg-gray-900 */
+}
+
+/* Option 4: Gradient */
+.option4-bg {
+  background-image: linear-gradient(to bottom right, rgb(49, 46, 129), rgb(107, 33, 168), rgb(131, 24, 67));
+} 

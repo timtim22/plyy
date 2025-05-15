@@ -1,0 +1,616 @@
+<%= stylesheet_link_tag "animations", "data-turbo-track": "reload" %>
+<%= csrf_meta_tags %>
+
+<!-- OPTION 1: Minimalist abstract art (medium tones) -->
+<div id="option1" class="min-h-screen w-full flex flex-col items-center option1-bg relative overflow-hidden">
+  <!-- Navbar -->
+  <div class="w-full px-4 py-4 flex justify-end items-center relative z-20">
+    <div class="flex space-x-3">
+      <a href="/users/sign_in" class="group relative px-4 py-2 rounded-lg overflow-hidden transition-all duration-300">
+        <!-- Button background with gradient (matching signup) -->
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-500 to-indigo-500 rounded-lg"></div>
+        <!-- Button glow effect (matching signup) -->
+        <div class="absolute -inset-0.5 bg-gradient-to-r from-teal-400 to-indigo-400 rounded-lg opacity-0 group-hover:opacity-70 blur-md transition-all"></div>
+        <!-- Button content -->
+        <span class="relative text-white font-medium text-sm">Log In</span>
+      </a>
+      <a href="/users/sign_up" class="group relative px-4 py-2 rounded-lg overflow-hidden transition-all duration-300">
+        <!-- Button background with gradient -->
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-500 to-indigo-500 rounded-lg"></div>
+        <!-- Button glow effect -->
+        <div class="absolute -inset-0.5 bg-gradient-to-r from-teal-400 to-indigo-400 rounded-lg opacity-0 group-hover:opacity-70 blur-md transition-all"></div>
+        <!-- Button content -->
+        <span class="relative text-white font-medium text-sm">Sign Up</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Original shapes -->
+  <div id="shape1" class="shape absolute h-80 w-80 rounded-full bg-amber-400/20"></div>
+  <div id="shape3" class="shape absolute h-40 w-40 bg-teal-400/30 rounded-sm"></div>
+  <div id="shape4" class="shape absolute h-52 w-52 border-4 border-zinc-400 rounded-full"></div>
+  
+  <!-- New background shapes -->
+  <div id="shape5" class="shape absolute h-64 w-64 rounded-full bg-blue-400/15"></div>
+  <div id="shape6" class="shape absolute h-36 w-36 rounded-full bg-purple-400/20"></div>
+  <div id="shape7" class="shape absolute h-48 w-48 rounded-full border-2 border-indigo-400/30"></div>
+  <div id="shape8" class="shape absolute h-32 w-32 bg-emerald-400/20 rounded-sm"></div>
+
+  <!-- Container for particles -->
+  <div id="particles-container" class="absolute inset-0 pointer-events-none"></div>
+
+  <!-- Upload section -->
+  <div class="flex justify-center items-center min-h-screen w-full">
+    <!-- Modern upload component with states -->
+    <div class="upload-button-container relative z-10">
+      <!-- Hidden static file input -->
+      <div id="resume-form" class="hidden">
+        <input type="file" id="resume-file-input" accept=".pdf,.docx,.doc">
+      </div>
+      
+      <!-- Initial state button -->
+      <button id="upload-button" class="group relative px-12 py-6 rounded-xl shadow-lg transition-all duration-300 overflow-hidden border border-slate-200 w-80 h-40">
+        <!-- Animated gradient background -->
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-400/40 via-white/80 to-amber-400/40 background-animate"></div>
+        
+        <!-- Backdrop blur and base background -->
+        <div class="absolute inset-0 backdrop-blur-sm bg-white/50"></div>
+        
+        <!-- Button content -->
+        <div class="relative flex flex-col items-center space-y-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-slate-700 group-hover:text-slate-900 transition-all duration-300 group-hover:translate-y-[-2px] group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+          </svg>
+          <span class="text-lg font-medium text-slate-700 group-hover:text-slate-900 tracking-wide transition-colors">UPLOAD RESUME</span>
+        </div>
+        
+        <!-- Animated glow effect on hover -->
+        <div class="absolute -inset-0.5 bg-gradient-to-r from-teal-400 via-amber-400 to-indigo-400 rounded-xl opacity-0 group-hover:opacity-30 blur-md transition-all duration-500 group-hover:duration-300"></div>
+      </button>
+      
+      <!-- Loading state (hidden by default) -->
+      <div id="loading-state" class="hidden group relative px-12 py-6 rounded-xl shadow-lg transition-all duration-300 overflow-hidden border border-slate-200 w-96">
+        <!-- Animated gradient background -->
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-400/40 via-white/80 to-amber-400/40 background-animate"></div>
+        
+        <!-- Backdrop blur and base background -->
+        <div class="absolute inset-0 backdrop-blur-sm bg-white/50"></div>
+        
+        <!-- Loading content -->
+        <div class="relative flex flex-col items-center space-y-4">
+          <span class="text-lg font-medium text-slate-700 tracking-wide transition-all duration-300">
+            <span id="loading-text">SCANNING RESUME</span>
+          </span>
+          
+          <!-- Progress bar container -->
+          <div class="w-full max-w-xs bg-slate-200 rounded-full h-2.5 overflow-hidden">
+            <div id="progress-bar" class="bg-gradient-to-r from-teal-400 to-indigo-500 h-2.5 rounded-full w-0 transition-all duration-300"></div>
+          </div>
+          
+          <!-- Job count display -->
+          <div class="flex items-center justify-center w-full max-w-xs">
+            <span id="jobs-found" class="text-sm font-medium text-slate-700">0 jobs found</span>
+          </div>
+          
+          <span id="file-name" class="text-sm text-slate-500 max-w-xs truncate mt-2 w-full text-center"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Job results section (hidden by default) -->
+  <div id="job-results" class="hidden w-full max-w-6xl mx-auto px-4 py-10 relative z-10">
+    <!-- Results header -->
+    <div class="mb-8">
+      <div class="flex justify-between items-center mb-4">
+        <button id="back-to-upload" class="flex items-center text-indigo-600 hover:text-indigo-800 transition-colors duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+          </svg>
+          Upload Another Resume
+        </button>
+      </div>
+      
+      <div class="text-center">
+        <h1 class="text-3xl font-bold text-slate-800 mb-2">Ruby on Rails Jobs</h1>
+        <p class="text-lg text-slate-600">Matched <span class="font-medium text-teal-600">42</span> jobs based on your resume</p>
+      </div>
+    </div>
+    
+    <!-- Job listings -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Job Card 1 -->
+      <a href="https://example.com/jobs/senior-rails-developer" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-xl font-semibold text-slate-800 mb-2">Senior Ruby on Rails Developer</h3>
+              <p class="text-slate-600 mb-1">Acme Tech Solutions</p>
+              <p class="text-sm text-slate-500 mb-4">San Francisco, CA (Remote)</p>
+            </div>
+            <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-slate-700 line-clamp-3">We're looking for an experienced Ruby on Rails developer to join our dynamic team. You'll work on building and maintaining complex web applications, implementing new features, and ensuring code quality.</p>
+          </div>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">PostgreSQL</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">React</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">AWS</span>
+          </div>
+          
+          <div class="flex justify-between items-center">
+            <span class="text-slate-600 font-medium">$120K - $150K</span>
+            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Job Card 2 -->
+      <a href="https://example.com/jobs/rails-backend" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-xl font-semibold text-slate-800 mb-2">Rails Backend Engineer</h3>
+              <p class="text-slate-600 mb-1">Tech Innovators Inc.</p>
+              <p class="text-sm text-slate-500 mb-4">New York, NY (Hybrid)</p>
+            </div>
+            <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-slate-700 line-clamp-3">Join our backend team to build scalable and performant APIs. You'll be designing database schemas, implementing business logic, and optimizing application performance for our growing user base.</p>
+          </div>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">MySQL</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Redis</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Sidekiq</span>
+          </div>
+          
+          <div class="flex justify-between items-center">
+            <span class="text-slate-600 font-medium">$110K - $140K</span>
+            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Job Card 3 -->
+      <a href="https://example.com/jobs/fullstack-ruby" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-xl font-semibold text-slate-800 mb-2">Full Stack Ruby Developer</h3>
+              <p class="text-slate-600 mb-1">StartupBoost</p>
+              <p class="text-sm text-slate-500 mb-4">Austin, TX (Remote)</p>
+            </div>
+            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Contract</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-slate-700 line-clamp-3">Looking for a versatile full-stack developer to help build our SaaS platform. You'll be working on both frontend and backend, implementing new features, fixing bugs, and collaborating with product teams.</p>
+          </div>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">JavaScript</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Vue.js</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Heroku</span>
+          </div>
+          
+          <div class="flex justify-between items-center">
+            <span class="text-slate-600 font-medium">$90K - $120K</span>
+            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Job Card 4 -->
+      <a href="https://example.com/jobs/rails-team-lead" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-xl font-semibold text-slate-800 mb-2">Ruby on Rails Team Lead</h3>
+              <p class="text-slate-600 mb-1">Enterprise Solutions Ltd.</p>
+              <p class="text-sm text-slate-500 mb-4">Chicago, IL (On-site)</p>
+            </div>
+            <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-slate-700 line-clamp-3">Lead a team of Ruby on Rails developers in building enterprise applications. You'll oversee architecture decisions, mentor junior developers, and collaborate with stakeholders to deliver high-quality solutions.</p>
+          </div>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">PostgreSQL</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Docker</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">CI/CD</span>
+          </div>
+          
+          <div class="flex justify-between items-center">
+            <span class="text-slate-600 font-medium">$140K - $170K</span>
+            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Job Card 5 -->
+      <a href="https://example.com/jobs/junior-rails-dev" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-xl font-semibold text-slate-800 mb-2">Junior Rails Developer</h3>
+              <p class="text-slate-600 mb-1">WebDev Solutions</p>
+              <p class="text-sm text-slate-500 mb-4">Denver, CO (Remote)</p>
+            </div>
+            <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-slate-700 line-clamp-3">Great opportunity for developers early in their career! Learn and grow with our supportive team while building real-world applications. We provide mentorship and a structured learning path.</p>
+          </div>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">HTML/CSS</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">JavaScript</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Git</span>
+          </div>
+          
+          <div class="flex justify-between items-center">
+            <span class="text-slate-600 font-medium">$70K - $90K</span>
+            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Job Card 6 -->
+      <a href="https://example.com/jobs/ruby-api-dev" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-xl font-semibold text-slate-800 mb-2">Ruby API Developer</h3>
+              <p class="text-slate-600 mb-1">FinTech Innovators</p>
+              <p class="text-sm text-slate-500 mb-4">Boston, MA (Hybrid)</p>
+            </div>
+            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Part-time</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-slate-700 line-clamp-3">Create robust API services for our financial technology platform. You'll be responsible for designing and implementing secure, scalable APIs that power our customer-facing applications.</p>
+          </div>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails API</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">OAuth</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">JWT</span>
+            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Microservices</span>
+          </div>
+          
+          <div class="flex justify-between items-center">
+            <span class="text-slate-600 font-medium">$65/hr</span>
+            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    
+    <!-- Pagination -->
+    <div class="mt-10 flex justify-center">
+      <nav class="inline-flex rounded-md shadow">
+        <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-l-md border border-slate-300">Previous</a>
+        <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 border-t border-b border-slate-300">1</a>
+        <a href="#" class="px-4 py-2 bg-indigo-50 text-sm font-medium text-indigo-600 border-t border-b border-slate-300">2</a>
+        <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 border-t border-b border-slate-300">3</a>
+        <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-r-md border border-slate-300">Next</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const uploadButton = document.getElementById('upload-button');
+  const fileInput = document.getElementById('resume-file-input');
+  const loadingState = document.getElementById('loading-state');
+  const loadingText = document.getElementById('loading-text');
+  const fileNameElement = document.getElementById('file-name');
+  const progressBar = document.getElementById('progress-bar');
+  const jobsFoundElement = document.getElementById('jobs-found');
+  const jobResultsSection = document.getElementById('job-results');
+  const uploadSection = document.querySelector('.flex.justify-center.items-center.min-h-screen');
+  const backToUploadButton = document.getElementById('back-to-upload');
+  
+  // Get job cards container for dynamic generation
+  const jobCardsContainer = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.gap-6');
+  
+  // Loading text variations
+  const loadingTexts = [
+    'SCANNING RESUME',
+    'ANALYZING SKILLS',
+    'MATCHING JOBS'
+  ];
+  
+  // Polling interval for checking progress (in ms)
+  const POLLING_INTERVAL = 1000;
+  let pollingTimer = null;
+  let currentSearchId = null;
+  let textInterval = null;
+  
+  // Function to check job progress
+  function checkJobProgress() {
+    if (!currentSearchId) return;
+    
+    fetch(`/job_progress/${currentSearchId}`)
+      .then(response => response.json())
+      .then(data => {
+        // Update job count display
+        const jobCount = data.job_count || 0;
+        const totalTarget = data.total_target || 20;
+        const oldJobCount = parseInt(jobsFoundElement.textContent.split(' ')[0]) || 0;
+        
+        if (oldJobCount !== jobCount) {
+          console.log(`Jobs found: ${jobCount}`);
+          
+          // Add animation class
+          jobsFoundElement.classList.add('count-updated');
+          
+          // Update text
+          jobsFoundElement.textContent = jobCount + ' jobs found';
+          
+          // Calculate progress percentage
+          const progressPct = Math.min(Math.round((jobCount / totalTarget) * 100), 100);
+          progressBar.style.width = progressPct + '%';
+          
+          // Remove animation class after animation completes
+          setTimeout(() => {
+            jobsFoundElement.classList.remove('count-updated');
+          }, 300);
+        }
+        
+        // If search is complete, fetch results and show them
+        if (data.completed) {
+          clearInterval(pollingTimer);
+          clearInterval(textInterval);
+          
+          // Ensure progress bar shows 100%
+          progressBar.style.width = '100%';
+          
+          // Fetch the completed search results
+          fetch(`/resumes/${currentSearchId}`)
+            .then(response => response.json())
+            .then(searchData => {
+              if (searchData.success) {
+                // Update job results count in the results view
+                const jobCountElement = document.querySelector('.text-lg.text-slate-600 .font-medium.text-teal-600');
+                if (jobCountElement) {
+                  jobCountElement.textContent = searchData.job_count;
+                }
+                
+                // Clear any existing job cards
+                jobCardsContainer.innerHTML = '';
+                
+                // Create job cards from the data
+                searchData.jobs.forEach((job, index) => {
+                  const jobCard = createJobCard(job, index);
+                  jobCardsContainer.appendChild(jobCard);
+                });
+                
+                // Show job results
+                setTimeout(function() {
+                  // Hide loading state and the entire upload section
+                  loadingState.classList.add('hidden');
+                  uploadSection.classList.add('hidden');
+                  
+                  // Show job results section
+                  jobResultsSection.classList.remove('hidden');
+                  
+                  // Animate job cards sequentially
+                  animateJobCards();
+                  
+                  // Scroll to top smoothly
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  
+                  // Reset the file input for future uploads
+                  fileInput.value = '';
+                  fileNameElement.textContent = '';
+                }, 800);
+              }
+            })
+            .catch(error => {
+              console.error('Error fetching search results:', error);
+            });
+        }
+      })
+      .catch(error => {
+        console.error('Error checking job progress:', error);
+      });
+  }
+  
+  // Function to create a job card
+  function createJobCard(job, index) {
+    const card = document.createElement('a');
+    card.href = job.url;
+    card.target = "_blank";
+    card.className = "block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300";
+    
+    // Job type badge
+    const jobType = job.job_type || "Full-time"; // Use job type if available
+    
+    // Display work setting badge if available
+    const workSetting = job.work_setting && job.work_setting !== "Not specified" 
+      ? `<span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full ml-2">${job.work_setting}</span>` 
+      : '';
+    
+    // Display salary if available
+    const salaryDisplay = job.salary && job.salary !== "Not specified" 
+      ? `<span class="text-slate-600 font-medium">${job.salary}</span>` 
+      : `<span class="text-slate-600 font-medium">Apply Now</span>`;
+    
+    // Display reference number if available
+    const refDisplay = job.reference_number 
+      ? `<div class="text-xs text-slate-500 mb-2">Ref: ${job.reference_number}</div>` 
+      : '';
+    
+    card.innerHTML = `
+      <div class="p-6">
+        <div class="flex justify-between items-start">
+          <div>
+            <h3 class="text-xl font-semibold text-slate-800 mb-2">${job.title || 'Job Title'}</h3>
+            <p class="text-slate-600 mb-1">${job.company || 'Company'}</p>
+            <p class="text-sm text-slate-500 mb-1">${job.location || 'Location'}</p>
+          </div>
+          <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">${jobType}</span>
+        </div>
+        
+        <div class="mb-4">
+          <p class="text-slate-700 line-clamp-3">${job.description || job.summary || 'No description available'}</p>
+        </div>
+        
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
+          <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
+        </div>
+        
+        <div class="flex justify-between items-center">
+          ${salaryDisplay}
+          <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+        </div>
+      </div>
+    `;
+    
+    return card;
+  }
+  
+  // Function to animate job cards sequentially
+  function animateJobCards() {
+    const jobCards = document.querySelectorAll('.job-card');
+    jobCards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('animate');
+      }, 100 + (index * 300)); // 300ms delay between each card
+    });
+  }
+  
+  // Trigger file input when button is clicked
+  uploadButton.addEventListener('click', function() {
+    fileInput.click();
+  });
+  
+  // Handle Back to Upload button click
+  backToUploadButton.addEventListener('click', function() {
+    // Hide job results
+    jobResultsSection.classList.add('hidden');
+    
+    // Reset job card animations
+    const jobCards = document.querySelectorAll('.job-card');
+    jobCards.forEach(card => {
+      card.classList.remove('animate');
+    });
+    
+    // Show upload section
+    uploadSection.classList.remove('hidden');
+    
+    // Show upload button
+    uploadButton.classList.remove('hidden');
+  });
+  
+  // Handle file selection
+  fileInput.addEventListener('change', function(e) {
+    if (this.files && this.files.length > 0) {
+      const fileName = this.files[0].name;
+      console.log('Selected file:', fileName);
+      
+      // Display the file name in loading state
+      fileNameElement.textContent = fileName;
+      
+      // Reset progress bar and job count
+      progressBar.style.width = '0%';
+      jobsFoundElement.textContent = '0 jobs found';
+      
+      // Hide the upload button
+      uploadButton.classList.add('hidden');
+      
+      // Show loading state
+      loadingState.classList.remove('hidden');
+      
+      // Start changing loading text - slowed down to 1.5 seconds
+      let textIndex = 0;
+      textInterval = setInterval(function() {
+        loadingText.textContent = loadingTexts[textIndex];
+        textIndex = (textIndex + 1) % loadingTexts.length;
+      }, 1500);
+      
+      // Create FormData and append the file
+      const formData = new FormData();
+      formData.append('resume[file]', this.files[0]);
+      
+      // CSRF token for Rails
+      const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      
+      // Submit the form data via AJAX
+      fetch('/resumes', {
+        method: 'POST',
+        headers: {
+          'X-CSRF-Token': token
+        },
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Store the search ID for polling
+          currentSearchId = data.search_id;
+          
+          console.log(`Search ID: ${currentSearchId}`);
+          
+          // Start polling for progress
+          clearInterval(pollingTimer);
+          pollingTimer = setInterval(checkJobProgress, POLLING_INTERVAL);
+          
+          // Initial progress check
+          checkJobProgress();
+        } else {
+          // Clear intervals
+          clearInterval(textInterval);
+          clearInterval(pollingTimer);
+          
+          alert('Error uploading resume: ' + data.errors.join(', '));
+          
+          // Reset the UI
+          loadingState.classList.add('hidden');
+          uploadButton.classList.remove('hidden');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        
+        // Clear intervals
+        clearInterval(textInterval);
+        clearInterval(pollingTimer);
+        
+        alert('An error occurred while processing your resume');
+        
+        // Reset the UI
+        loadingState.classList.add('hidden');
+        uploadButton.classList.remove('hidden');
+      });
+    }
+  });
+});
+</script>
+
+
+
+
