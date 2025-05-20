@@ -1,6 +1,28 @@
 <%= stylesheet_link_tag "animations", "data-turbo-track": "reload" %>
 <%= csrf_meta_tags %>
 
+<style>
+  .job-card {
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .job-card.animate {
+    opacity: 1 !important;
+    transform: translateY(0);
+  }
+  
+  .count-updated {
+    animation: pulse 0.3s ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+</style>
+
 <!-- OPTION 1: Minimalist abstract art (medium tones) -->
 <div id="option1" class="min-h-screen w-full flex flex-col items-center option1-bg relative overflow-hidden">
   <!-- Navbar -->
@@ -113,7 +135,7 @@
       
       <div class="text-center">
         <h1 class="text-3xl font-bold text-slate-800 mb-2">Ruby on Rails Jobs</h1>
-        <p class="text-lg text-slate-600">Matched <span class="font-medium text-teal-600">42</span> jobs based on your resume</p>
+        <p class="text-lg text-slate-600">Matched <span class="font-medium text-teal-600" id="matched-jobs-count">0</span> jobs based on your resume</p>
       </div>
     </div>
     
@@ -393,16 +415,18 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(searchData => {
               if (searchData.success) {
                 // Update job results count in the results view
-                const jobCountElement = document.querySelector('.text-lg.text-slate-600 .font-medium.text-teal-600');
+                const jobCountElement = document.querySelector('#matched-jobs-count');
                 if (jobCountElement) {
-                  jobCountElement.textContent = searchData.job_count;
+                  jobCountElement.textContent = searchData.job_count || searchData.search_results?.length || 0;
                 }
                 
                 // Clear any existing job cards
                 jobCardsContainer.innerHTML = '';
                 
                 // Create job cards from the data
-                searchData.jobs.forEach((job, index) => {
+                const jobsArray = searchData.jobs || searchData.search_results || [];
+                console.log('Jobs to display:', jobsArray);
+                jobsArray.forEach((job, index) => {
                   const jobCard = createJobCard(job, index);
                   jobCardsContainer.appendChild(jobCard);
                 });
@@ -440,8 +464,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Function to create a job card
   function createJobCard(job, index) {
+    console.log('Creating job card for:', job);
+    
     const card = document.createElement('a');
-    card.href = job.url;
+    card.href = job.url || '#';
     card.target = "_blank";
     card.className = "block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300";
     
@@ -470,8 +496,10 @@ document.addEventListener('DOMContentLoaded', function() {
             <h3 class="text-xl font-semibold text-slate-800 mb-2">${job.title || 'Job Title'}</h3>
             <p class="text-slate-600 mb-1">${job.company || 'Company'}</p>
             <p class="text-sm text-slate-500 mb-1">${job.location || 'Location'}</p>
+            ${refDisplay}
           </div>
           <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">${jobType}</span>
+          ${workSetting}
         </div>
         
         <div class="mb-4">
@@ -496,9 +524,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to animate job cards sequentially
   function animateJobCards() {
     const jobCards = document.querySelectorAll('.job-card');
+    console.log(`Animating ${jobCards.length} job cards`);
     jobCards.forEach((card, index) => {
       setTimeout(() => {
         card.classList.add('animate');
+        card.style.opacity = '1';
       }, 100 + (index * 300)); // 300ms delay between each card
     });
   }

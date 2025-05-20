@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    Ascii85 (2.0.1)
     actioncable (8.0.2)
       actionpack (= 8.0.2)
       activesupport (= 8.0.2)
@@ -74,6 +75,7 @@ GEM
       uri (>= 0.13.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    afm (0.2.2)
     ast (2.4.3)
     base64 (0.2.0)
     bcrypt (3.1.20)
@@ -129,6 +131,7 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hashery (2.1.2)
     http-cookie (1.0.8)
       domain_name (~> 0.5)
     httparty (0.23.1)
@@ -228,6 +231,12 @@ GEM
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
+    pdf-reader (2.14.1)
+      Ascii85 (>= 1.0, < 3.0, != 2.0.0)
+      afm (~> 0.2.1)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -325,6 +334,7 @@ GEM
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
+    ruby-rc4 (0.1.5)
     rubyntlm (0.6.5)
       base64
     rubyzip (2.4.1)
@@ -375,6 +385,8 @@ GEM
     thruster (0.1.13-arm64-darwin)
     thruster (0.1.13-x86_64-linux)
     timeout (0.4.3)
+    ttfunk (1.8.0)
+      bigdecimal (~> 3.1)
     turbo-rails (2.0.13)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
@@ -427,6 +439,7 @@ DEPENDENCIES
   kamal
   mechanize
   nokogiri
+  pdf-reader
   propshaft
   pry
   puma (>= 5.0)

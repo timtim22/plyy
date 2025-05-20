@@ -19,7 +19,21 @@ class ResumesController < ApplicationController
       parsed_text: "Sample parsed text" # We'll just use a placeholder for now
     )
 
+    # we get the job_title from the LLM/API
+
     if @resume.save
+      text = ""
+      reader = PDF::Reader.new(resume_params[:file].tempfile)
+      reader.pages.each do |page|
+        text << page.text
+      end
+      clean_text = text
+                  .gsub(/\n+/, "\n")
+                  .gsub(/[ \t]{2,}/, ' ')
+                  .gsub(/\s+\n/, "\n")
+                  .strip  
+      job_title = get_job_title(clean_text)
+      # binding.pry
       # Create a new search associated with this resume
       search = Search.create(user: user, resume: @resume, completed: false)
       
@@ -29,7 +43,7 @@ class ResumesController < ApplicationController
         job_type = nil
         
         # Use IndeedFetchJob to get job listings
-        fetch_job = IndeedFetchJob.new(search.id)
+        fetch_job = IndeedFetchJob.new(search.id, job_title)
         job_data = fetch_job.fetch_jobs
         
         # Save job details as search results
@@ -88,10 +102,12 @@ class ResumesController < ApplicationController
     search = Search.find_by(id: params[:id])
     
     if search
+      search_results = search.search_results.to_a
       render json: {
         success: true,
-        job_count: search.search_results.count,
-        jobs: search.search_results
+        job_count: search_results.count,
+        jobs: search_results,
+        search_results: search_results
       }
     else
       render json: { success: false, error: "Search not found" }, status: :not_found
@@ -102,5 +118,23 @@ class ResumesController < ApplicationController
 
   def resume_params
     params.require(:resume).permit(:file)
+  end
+
+  def get_job_title(text)
+    api_key = ENV['OPENROUTER_API_KEY']
+    response = HTTParty.post("https://openrouter.ai/api/v1/chat/completions",
+      headers: {
+        "Authorization" => "Bearer #{api_key}",
+        "Content-Type" => "application/json"
+      },
+      body: {
+        model: "mistralai/mistral-small", # or use "mistralai/mistral-7b-instruct"
+        messages: [
+          { role: "user", content: "Based on the resume text below, extract the most relevant programming-language-specific job title this person would most likely search for jobs under. Respond with only one word, such as 'Ruby', 'Python', 'React', etc. Avoid generic terms like 'Developer' or 'Engineer'. Resume Text: #{text}" }
+        ],
+        temperature: 0.2
+      }.to_json
+    )
+    JSON.parse(response.body).dig("choices", 0, "message", "content")
   end
 end

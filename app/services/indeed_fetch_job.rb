@@ -1,6 +1,7 @@
 class IndeedFetchJob
-  def initialize(search_id = nil)
+  def initialize(search_id = nil, job_title = nil)
     @search_id = search_id
+    @job_title = job_title
     @progress_file = "#{Rails.root}/tmp/job_progress_#{search_id}.json"
     reset_progress
   end
@@ -49,8 +50,7 @@ class IndeedFetchJob
     job_results = []
 
     begin
-      # 3) Hit the jobs page
-      target = "https://www.indeed.com/jobs?q=#{job_title}"
+      target = "https://www.indeed.com/jobs?q=#{@job_title}"
       driver.get(target)
       sleep 4
       
@@ -348,9 +348,3 @@ class IndeedFetchJob
     end
   end
 end
-
-
-- Upload a resume
-- Extract all the text from the resume
-- Pass the text to the LLM
-- get the title of the job search
