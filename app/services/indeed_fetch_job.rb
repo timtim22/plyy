@@ -1,4 +1,6 @@
 class IndeedFetchJob
+  require 'webdrivers/chromedriver'
+
   def initialize(search_id = nil, job_title = nil)
     @search_id = search_id
     @job_title = job_title
@@ -31,35 +33,35 @@ class IndeedFetchJob
   end
 
   def fetch_jobs
-    # 1) Point to your Homebrew chromedriver
-    Selenium::WebDriver::Chrome::Service.driver_path = '/opt/homebrew/bin/chromedriver'
-
-    # 2) Launch Chrome (head-ful so CF runs its JS)
-    opts = Selenium::WebDriver::Chrome::Options.new
-    opts.add_argument('--disable-blink-features=AutomationControlled')
-    opts.add_argument('--window-size=1280,800')
-    opts.add_argument(
-    '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) ' \
-    'AppleWebKit/537.36 (KHTML, like Gecko) ' \
-    'Chrome/136.0.7103.93 Safari/537.36'
+    # Use the centralized SeleniumConfig for cross-platform compatibility
+    # Force Docker if environment variable is set to bypass Chrome version issues
+    method = ENV['FORCE_DOCKER_SELENIUM'] == 'true' ? :docker : :auto
+    
+    driver = SeleniumConfig.create_driver(
+      method: method,              # Use Docker if forced, otherwise auto-detect
+      headless: false,             # Keep visible for captcha handling
+      stealth: true               # Enable anti-detection features
     )
-
-    driver = Selenium::WebDriver.for :chrome, options: opts
-    driver.manage.timeouts.page_load = 60
     
     job_results = []
 
     begin
       target = "https://www.indeed.com/jobs?q=#{@job_title}"
       driver.get(target)
-      sleep 4
+      
+      # More human-like waiting pattern
+      sleep(rand(3..6))
+      
+      # Scroll a bit to simulate human behavior
+      driver.execute_script("window.scrollTo(0, 300);")
+      sleep(rand(1..3))
       
       # 4) Wait for Cloudflare's JS to complete and for the job cards to appear
       wait = Selenium::WebDriver::Wait.new(timeout: 15)
       wait.until { driver.find_elements(css: 'div.job_seen_beacon').any? }
       
       # 5) Immediately click the first job to load its description (first job is usually pre-selected)
-      first_job_title = driver.find_element(css: 'h2.jobTitle a') rescue nil
+      first_job_title = driver.find_elements(css: 'h2.jobTitle a').first rescue nil
       if first_job_title
         puts "Clicking first job to preload description"
         first_job_title.click
