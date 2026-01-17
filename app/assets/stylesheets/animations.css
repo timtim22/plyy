@@ -183,7 +183,7 @@
 /* Shape container to help with positioning */
 .shape {
   position: absolute;
-  pointer-events: auto;
+  pointer-events: none;
   z-index: 3;
 }
 
