@@ -2,10 +2,44 @@
 
 /* Floating animation for background shapes */
 @keyframes float {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(10px, -15px) rotate(2deg); }
-  50% { transform: translate(-5px, 10px) rotate(-1deg); }
-  75% { transform: translate(-15px, -5px) rotate(1deg); }
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  25% { transform: translate(15px, -20px) rotate(3deg) scale(1.02); }
+  50% { transform: translate(-8px, 15px) rotate(-2deg) scale(0.98); }
+  75% { transform: translate(-20px, -8px) rotate(2deg) scale(1.01); }
+}
+
+/* Gentle pulse animation for shapes */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.2; filter: blur(0px); }
+  50% { opacity: 0.35; filter: blur(2px); }
+}
+
+/* Morphing blob animation */
+@keyframes morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 30% 40% 70% 50%; }
+  75% { border-radius: 40% 30% 60% 50% / 60% 70% 30% 40%; }
+}
+
+/* Slow rotating animation */
+@keyframes slow-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Drift animation for ambient particles */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  33% { transform: translate(30px, -40px) scale(1.1); opacity: 0.5; }
+  66% { transform: translate(-20px, 20px) scale(0.9); opacity: 0.4; }
+}
+
+/* Shimmer effect for light streaks */
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); opacity: 0; }
+  50% { opacity: 0.3; }
+  100% { transform: translateX(200%) rotate(45deg); opacity: 0; }
 }
 
 /* Button subtle breathing animation */
@@ -196,14 +230,112 @@
   animation: float 8s ease-in-out infinite;
 }
 
+/* Morphing blob shapes */
+.shape-blob {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  animation: float 12s ease-in-out infinite, morph 15s ease-in-out infinite, pulse-glow 8s ease-in-out infinite;
+}
+
+/* Rotating ring shapes */
+.shape-ring {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  animation: slow-rotate 30s linear infinite, float 10s ease-in-out infinite;
+}
+
+/* Drifting particle shapes */
+.shape-particle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  animation: drift 20s ease-in-out infinite;
+}
+
+/* Shimmer light streaks */
+.shape-shimmer {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 8s ease-in-out infinite;
+}
+
 /* Stagger animation timing for each shape */
-#shape1 { animation-delay: 0s; animation-duration: 7s; }
-#shape3 { animation-delay: -1s; animation-duration: 9s; }
-#shape4 { animation-delay: -2s; animation-duration: 8s; }
-#shape5 { animation-delay: -3s; animation-duration: 10s; }
-#shape6 { animation-delay: -4s; animation-duration: 6s; }
-#shape7 { animation-delay: -5s; animation-duration: 11s; }
-#shape8 { animation-delay: -6s; animation-duration: 7.5s; }
+#shape1 {
+  animation: float 7s ease-in-out infinite, pulse-glow 6s ease-in-out infinite;
+  animation-delay: 0s, -2s;
+}
+#shape3 {
+  animation: float 9s ease-in-out infinite, morph 12s ease-in-out infinite;
+  animation-delay: -1s, 0s;
+}
+#shape4 {
+  animation: slow-rotate 25s linear infinite, float 8s ease-in-out infinite;
+  animation-delay: 0s, -2s;
+}
+#shape5 {
+  animation: float 10s ease-in-out infinite, pulse-glow 7s ease-in-out infinite;
+  animation-delay: -3s, -1s;
+}
+#shape6 {
+  animation: float 6s ease-in-out infinite, morph 18s ease-in-out infinite;
+  animation-delay: -4s, -5s;
+}
+#shape7 {
+  animation: slow-rotate 35s linear infinite, float 11s ease-in-out infinite;
+  animation-delay: 0s, -5s;
+}
+#shape8 {
+  animation: float 7.5s ease-in-out infinite, morph 14s ease-in-out infinite;
+  animation-delay: -6s, -3s;
+}
+
+/* New decorative shapes */
+#shape9 {
+  left: 45%;
+  top: 10%;
+  animation: drift 18s ease-in-out infinite;
+  animation-delay: -2s;
+}
+#shape10 {
+  left: 5%;
+  top: 75%;
+  animation: float 9s ease-in-out infinite, pulse-glow 5s ease-in-out infinite;
+  animation-delay: -4s, 0s;
+}
+#shape11 {
+  left: 85%;
+  top: 50%;
+  animation: slow-rotate 40s linear infinite;
+}
+#shape12 {
+  left: 35%;
+  top: 85%;
+  animation: drift 22s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+/* Shimmer positions */
+#shimmer1 {
+  left: 20%;
+  top: 30%;
+  animation-delay: 0s;
+}
+#shimmer2 {
+  left: 60%;
+  top: 55%;
+  animation-delay: -3s;
+}
+#shimmer3 {
+  left: 40%;
+  top: 70%;
+  animation-delay: -6s;
+}
 
 /* Theme-specific styling */
 /* Option 1: Minimalist abstract art */
