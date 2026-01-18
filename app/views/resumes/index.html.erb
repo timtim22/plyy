@@ -78,23 +78,30 @@
       </div>
       
       <!-- Initial state button -->
-      <button id="upload-button" class="group relative px-12 py-6 rounded-xl shadow-lg transition-all duration-300 overflow-hidden border border-slate-200 w-80 h-40 hover:border-indigo-300">
-        <!-- Animated gradient background -->
-        <div class="absolute inset-0 bg-gradient-to-r from-teal-400/40 via-white/80 to-amber-400/40 background-animate"></div>
+      <button id="upload-button" class="group relative px-12 py-6 rounded-2xl shadow-xl transition-all duration-500 overflow-hidden border-2 border-indigo-200/60 w-80 h-40 hover:border-indigo-400 hover:shadow-2xl hover:scale-[1.02]">
+        <!-- Modern gradient background with smooth animation -->
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-teal-500/10 group-hover:from-indigo-500/20 group-hover:via-purple-500/20 group-hover:to-teal-500/20 transition-all duration-500"></div>
 
-        <!-- Backdrop blur and base background with hover color effect -->
-        <div class="absolute inset-0 backdrop-blur-sm bg-white/50 group-hover:bg-indigo-100/70 transition-colors duration-300"></div>
-        
-        <!-- Button content -->
-        <div class="relative flex flex-col items-center space-y-3">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-slate-700 group-hover:text-slate-900 transition-all duration-300 group-hover:translate-y-[-2px] group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-          </svg>
-          <span class="text-lg font-medium text-slate-700 group-hover:text-slate-900 tracking-wide transition-colors">UPLOAD RESUME</span>
+        <!-- Glass morphism effect -->
+        <div class="absolute inset-0 backdrop-blur-md bg-white/70 group-hover:bg-white/80 transition-all duration-500"></div>
+
+        <!-- Shimmer effect on hover -->
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
         </div>
-        
-        <!-- Animated glow effect on hover -->
-        <div class="absolute -inset-0.5 bg-indigo-400 rounded-xl opacity-0 group-hover:opacity-40 blur-md transition-all duration-500 group-hover:duration-300"></div>
+
+        <!-- Button content -->
+        <div class="relative flex flex-col items-center space-y-4">
+          <div class="p-3 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg group-hover:shadow-indigo-300/50 transition-all duration-500 group-hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white transition-all duration-300 group-hover:translate-y-[-2px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+          </div>
+          <span class="text-base font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-wider transition-all duration-300 group-hover:tracking-widest">UPLOAD RESUME</span>
+        </div>
+
+        <!-- Subtle ring glow on hover -->
+        <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500 -z-10"></div>
       </button>
       
       <!-- Loading state (hidden by default) -->
