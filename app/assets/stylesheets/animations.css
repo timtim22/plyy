@@ -1,4 +1,12 @@
-/* Static background shapes styling */
+/* Background shapes styling with floating animation */
+
+/* Floating animation for background shapes */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(10px, -15px) rotate(2deg); }
+  50% { transform: translate(-5px, 10px) rotate(-1deg); }
+  75% { transform: translate(-15px, -5px) rotate(1deg); }
+}
 
 /* Button subtle breathing animation */
 @keyframes button-breathing {
@@ -185,7 +193,17 @@
   position: absolute;
   pointer-events: none;
   z-index: 3;
+  animation: float 8s ease-in-out infinite;
 }
+
+/* Stagger animation timing for each shape */
+#shape1 { animation-delay: 0s; animation-duration: 7s; }
+#shape3 { animation-delay: -1s; animation-duration: 9s; }
+#shape4 { animation-delay: -2s; animation-duration: 8s; }
+#shape5 { animation-delay: -3s; animation-duration: 10s; }
+#shape6 { animation-delay: -4s; animation-duration: 6s; }
+#shape7 { animation-delay: -5s; animation-duration: 11s; }
+#shape8 { animation-delay: -6s; animation-duration: 7.5s; }
 
 /* Theme-specific styling */
 /* Option 1: Minimalist abstract art */
