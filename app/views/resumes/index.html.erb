@@ -26,7 +26,22 @@
 <!-- OPTION 1: Minimalist abstract art (medium tones) -->
 <div id="option1" class="min-h-screen w-full flex flex-col items-center option1-bg relative overflow-hidden">
   <!-- Navbar -->
-  <div class="w-full px-4 py-4 flex justify-end items-center relative z-20">
+  <nav class="w-full px-6 py-4 flex justify-between items-center relative z-20">
+    <!-- Logo/Brand -->
+    <a href="/" class="flex items-center space-x-2">
+      <div class="h-8 w-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+        <span class="text-white font-bold text-lg">P</span>
+      </div>
+      <span class="text-xl font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Ply</span>
+    </a>
+
+    <!-- Central Navigation Links -->
+    <div class="flex items-center space-x-8">
+      <a href="/" class="text-slate-700 hover:text-indigo-600 font-medium transition-colors duration-200">Home</a>
+      <a href="/resumes" class="text-slate-700 hover:text-indigo-600 font-medium transition-colors duration-200">Jobs</a>
+    </div>
+
+    <!-- Auth Buttons -->
     <div class="flex space-x-3">
       <a href="/users/sign_in" class="group relative px-4 py-2 rounded-lg overflow-hidden transition-all duration-300 bg-gradient-to-r from-teal-400 to-indigo-400">
         <!-- Button glow effect -->
@@ -41,7 +56,7 @@
         <span class="relative z-10 text-white font-medium text-sm">Sign Up</span>
       </a>
     </div>
-  </div>
+  </nav>
 
   <!-- Original shapes with enhanced animations -->
   <div id="shape1" class="shape absolute h-80 w-80 rounded-full bg-amber-400/20"></div>
