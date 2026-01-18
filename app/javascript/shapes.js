@@ -119,7 +119,7 @@ function createExplosionParticles(event, element) {
     color = computedStyle.borderColor;
   } else {
     // Default color if we can't determine
-    color = element.id.includes('shape1') ? '#f59e0b' : 
+    color = element.id.includes('shape1') ? '#ef4444' : 
             element.id.includes('shape3') ? '#2dd4bf' : 
             element.id.includes('shape4') ? '#71717a' : 
             element.id.includes('shape5') ? '#60a5fa' : 
