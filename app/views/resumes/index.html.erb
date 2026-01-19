@@ -28,21 +28,21 @@
   <!-- Navbar -->
   <div class="w-full px-4 py-4 flex justify-end items-center relative z-20">
     <div class="flex space-x-3">
-      <a href="/users/sign_in" class="px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg">Log In</a>
-      <a href="/users/sign_up" class="px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg">Sign Up</a>
+      <a href="/users/sign_in" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg">Log In</a>
+      <a href="/users/sign_up" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg">Sign Up</a>
     </div>
   </div>
 
   <!-- Original shapes -->
-  <div id="shape1" class="shape absolute h-80 w-80 rounded-full bg-indigo-400/20"></div>
-  <div id="shape3" class="shape absolute h-40 w-40 bg-purple-300/30 rounded-sm"></div>
-  <div id="shape4" class="shape absolute h-52 w-52 border-4 border-indigo-400 rounded-full"></div>
+  <div id="shape1" class="shape absolute h-80 w-80 rounded-full bg-emerald-400/20"></div>
+  <div id="shape3" class="shape absolute h-40 w-40 bg-teal-300/30 rounded-sm"></div>
+  <div id="shape4" class="shape absolute h-52 w-52 border-4 border-emerald-400 rounded-full"></div>
 
   <!-- New background shapes -->
-  <div id="shape5" class="shape absolute h-64 w-64 rounded-full bg-purple-500/15"></div>
-  <div id="shape6" class="shape absolute h-36 w-36 rounded-full bg-indigo-400/20"></div>
-  <div id="shape7" class="shape absolute h-48 w-48 rounded-full border-2 border-purple-400/30"></div>
-  <div id="shape8" class="shape absolute h-32 w-32 bg-indigo-300/20 rounded-sm"></div>
+  <div id="shape5" class="shape absolute h-64 w-64 rounded-full bg-teal-500/15"></div>
+  <div id="shape6" class="shape absolute h-36 w-36 rounded-full bg-emerald-400/20"></div>
+  <div id="shape7" class="shape absolute h-48 w-48 rounded-full border-2 border-teal-400/30"></div>
+  <div id="shape8" class="shape absolute h-32 w-32 bg-emerald-300/20 rounded-sm"></div>
 
   <!-- Container for particles -->
   <div id="particles-container" class="absolute inset-0 pointer-events-none"></div>
@@ -57,12 +57,12 @@
       </div>
 
       <!-- Initial state button -->
-      <button id="upload-button" class="group relative px-12 py-6 rounded-xl shadow-lg transition-all duration-300 overflow-hidden border border-slate-200 w-80 h-40 hover:border-indigo-300">
+      <button id="upload-button" class="group relative px-12 py-6 rounded-xl shadow-lg transition-all duration-300 overflow-hidden border border-slate-200 w-80 h-40 hover:border-emerald-300">
         <!-- Animated gradient background -->
-        <div class="absolute inset-0 bg-gradient-to-r from-indigo-400/40 via-white/80 to-purple-300/40 background-animate"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-emerald-400/40 via-white/80 to-teal-300/40 background-animate"></div>
 
         <!-- Backdrop blur and base background with hover color effect -->
-        <div class="absolute inset-0 backdrop-blur-sm bg-white/50 group-hover:bg-indigo-100/70 transition-colors duration-300"></div>
+        <div class="absolute inset-0 backdrop-blur-sm bg-white/50 group-hover:bg-emerald-100/70 transition-colors duration-300"></div>
 
         <!-- Button content -->
         <div class="relative flex flex-col items-center space-y-3">
@@ -73,13 +73,13 @@
         </div>
 
         <!-- Animated glow effect on hover -->
-        <div class="absolute -inset-0.5 bg-indigo-400 rounded-xl opacity-0 group-hover:opacity-40 blur-md transition-all duration-500 group-hover:duration-300"></div>
+        <div class="absolute -inset-0.5 bg-emerald-400 rounded-xl opacity-0 group-hover:opacity-40 blur-md transition-all duration-500 group-hover:duration-300"></div>
       </button>
 
       <!-- Loading state (hidden by default) -->
       <div id="loading-state" class="hidden group relative px-12 py-6 rounded-xl shadow-lg transition-all duration-300 overflow-hidden border border-slate-200 w-96">
         <!-- Animated gradient background -->
-        <div class="absolute inset-0 bg-gradient-to-r from-indigo-400/40 via-white/80 to-purple-300/40 background-animate"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-emerald-400/40 via-white/80 to-teal-300/40 background-animate"></div>
 
         <!-- Backdrop blur and base background -->
         <div class="absolute inset-0 backdrop-blur-sm bg-white/50"></div>
@@ -92,7 +92,7 @@
 
           <!-- Progress bar container -->
           <div class="w-full max-w-xs bg-slate-200 rounded-full h-2.5 overflow-hidden">
-            <div id="progress-bar" class="bg-gradient-to-r from-indigo-400 to-purple-600 h-2.5 rounded-full w-0 transition-all duration-300"></div>
+            <div id="progress-bar" class="bg-gradient-to-r from-emerald-400 to-teal-600 h-2.5 rounded-full w-0 transition-all duration-300"></div>
           </div>
 
           <!-- Job count display -->
@@ -111,7 +111,7 @@
     <!-- Results header -->
     <div class="mb-8">
       <div class="flex justify-between items-center mb-4">
-        <button id="back-to-upload" class="flex items-center text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 px-3 py-2 rounded-lg transition-all duration-300">
+        <button id="back-to-upload" class="flex items-center text-emerald-600 hover:text-emerald-800 hover:bg-emerald-50 px-3 py-2 rounded-lg transition-all duration-300">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
           </svg>
@@ -121,14 +121,14 @@
 
       <div class="text-center">
         <h1 class="text-3xl font-bold text-slate-800 mb-2">Ruby on Rails Jobs</h1>
-        <p class="text-lg text-slate-600">Matched <span class="font-medium text-indigo-600" id="matched-jobs-count">0</span> jobs based on your resume</p>
+        <p class="text-lg text-slate-600">Matched <span class="font-medium text-emerald-600" id="matched-jobs-count">0</span> jobs based on your resume</p>
       </div>
     </div>
 
     <!-- Job listings -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Job Card 1 -->
-      <a href="https://example.com/jobs/senior-rails-developer" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+      <a href="https://example.com/jobs/senior-rails-developer" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
         <div class="p-6">
           <div class="flex justify-between items-start">
             <div>
@@ -136,7 +136,7 @@
               <p class="text-slate-600 mb-1">Acme Tech Solutions</p>
               <p class="text-sm text-slate-500 mb-4">San Francisco, CA (Remote)</p>
             </div>
-            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
           </div>
 
           <div class="mb-4">
@@ -153,13 +153,13 @@
 
           <div class="flex justify-between items-center">
             <span class="text-slate-600 font-medium">$120K - $150K</span>
-            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
           </div>
         </div>
       </a>
 
       <!-- Job Card 2 -->
-      <a href="https://example.com/jobs/rails-backend" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+      <a href="https://example.com/jobs/rails-backend" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
         <div class="p-6">
           <div class="flex justify-between items-start">
             <div>
@@ -167,7 +167,7 @@
               <p class="text-slate-600 mb-1">Tech Innovators Inc.</p>
               <p class="text-sm text-slate-500 mb-4">New York, NY (Hybrid)</p>
             </div>
-            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
           </div>
 
           <div class="mb-4">
@@ -184,13 +184,13 @@
 
           <div class="flex justify-between items-center">
             <span class="text-slate-600 font-medium">$110K - $140K</span>
-            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
           </div>
         </div>
       </a>
 
       <!-- Job Card 3 -->
-      <a href="https://example.com/jobs/fullstack-ruby" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+      <a href="https://example.com/jobs/fullstack-ruby" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
         <div class="p-6">
           <div class="flex justify-between items-start">
             <div>
@@ -198,7 +198,7 @@
               <p class="text-slate-600 mb-1">StartupBoost</p>
               <p class="text-sm text-slate-500 mb-4">Austin, TX (Remote)</p>
             </div>
-            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Contract</span>
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Contract</span>
           </div>
 
           <div class="mb-4">
@@ -215,13 +215,13 @@
 
           <div class="flex justify-between items-center">
             <span class="text-slate-600 font-medium">$90K - $120K</span>
-            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
           </div>
         </div>
       </a>
 
       <!-- Job Card 4 -->
-      <a href="https://example.com/jobs/rails-team-lead" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+      <a href="https://example.com/jobs/rails-team-lead" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
         <div class="p-6">
           <div class="flex justify-between items-start">
             <div>
@@ -229,7 +229,7 @@
               <p class="text-slate-600 mb-1">Enterprise Solutions Ltd.</p>
               <p class="text-sm text-slate-500 mb-4">Chicago, IL (On-site)</p>
             </div>
-            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
           </div>
 
           <div class="mb-4">
@@ -246,13 +246,13 @@
 
           <div class="flex justify-between items-center">
             <span class="text-slate-600 font-medium">$140K - $170K</span>
-            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
           </div>
         </div>
       </a>
 
       <!-- Job Card 5 -->
-      <a href="https://example.com/jobs/junior-rails-dev" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+      <a href="https://example.com/jobs/junior-rails-dev" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
         <div class="p-6">
           <div class="flex justify-between items-start">
             <div>
@@ -260,7 +260,7 @@
               <p class="text-slate-600 mb-1">WebDev Solutions</p>
               <p class="text-sm text-slate-500 mb-4">Denver, CO (Remote)</p>
             </div>
-            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
           </div>
 
           <div class="mb-4">
@@ -277,13 +277,13 @@
 
           <div class="flex justify-between items-center">
             <span class="text-slate-600 font-medium">$70K - $90K</span>
-            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
           </div>
         </div>
       </a>
 
       <!-- Job Card 6 -->
-      <a href="https://example.com/jobs/ruby-api-dev" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300">
+      <a href="https://example.com/jobs/ruby-api-dev" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
         <div class="p-6">
           <div class="flex justify-between items-start">
             <div>
@@ -291,7 +291,7 @@
               <p class="text-slate-600 mb-1">FinTech Innovators</p>
               <p class="text-sm text-slate-500 mb-4">Boston, MA (Hybrid)</p>
             </div>
-            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Part-time</span>
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Part-time</span>
           </div>
 
           <div class="mb-4">
@@ -308,7 +308,7 @@
 
           <div class="flex justify-between items-center">
             <span class="text-slate-600 font-medium">$65/hr</span>
-            <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
           </div>
         </div>
       </a>
@@ -319,7 +319,7 @@
       <nav class="inline-flex rounded-md shadow">
         <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-l-md border border-slate-300">Previous</a>
         <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 border-t border-b border-slate-300">1</a>
-        <a href="#" class="px-4 py-2 bg-indigo-50 text-sm font-medium text-indigo-600 border-t border-b border-slate-300">2</a>
+        <a href="#" class="px-4 py-2 bg-emerald-50 text-sm font-medium text-emerald-600 border-t border-b border-slate-300">2</a>
         <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 border-t border-b border-slate-300">3</a>
         <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-r-md border border-slate-300">Next</a>
       </nav>
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const card = document.createElement('a');
     card.href = job.url || '#';
     card.target = "_blank";
-    card.className = "block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-indigo-300";
+    card.className = "block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300";
 
     // Job type badge
     const jobType = job.job_type || "Full-time"; // Use job type if available
@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p class="text-sm text-slate-500 mb-1">${job.location || 'Location'}</p>
             ${refDisplay}
           </div>
-          <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">${jobType}</span>
+          <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">${jobType}</span>
           ${workSetting}
         </div>
 
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <div class="flex justify-between items-center">
           ${salaryDisplay}
-          <span class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+          <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
         </div>
       </div>
     `;
