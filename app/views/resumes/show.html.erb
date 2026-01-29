@@ -1,0 +1,103 @@
+<%= stylesheet_link_tag "animations", "data-turbo-track": "reload" %>
+
+<style>
+  .job-card {
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .job-card.animate {
+    opacity: 1 !important;
+    transform: translateY(0);
+  }
+</style>
+
+<!-- OPTION 1: Minimalist abstract art (medium tones) -->
+<div id="option1" class="min-h-screen w-full flex flex-col items-center option1-bg relative overflow-hidden">
+  <!-- Navbar -->
+  <div class="w-full px-4 py-4 flex justify-end items-center relative z-20">
+    <div class="flex space-x-3">
+      <a href="/users/sign_in" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg">Log In</a>
+      <a href="/users/sign_up" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg">Sign Up</a>
+    </div>
+  </div>
+
+  <!-- Background shapes -->
+  <div id="shape1" class="shape absolute h-80 w-80 rounded-full bg-emerald-400/20"></div>
+  <div id="shape3" class="shape absolute h-40 w-40 bg-teal-300/30 rounded-sm"></div>
+  <div id="shape5" class="shape absolute h-64 w-64 rounded-full bg-teal-500/15"></div>
+  <div id="shape6" class="shape absolute h-36 w-36 rounded-full bg-emerald-400/20"></div>
+  
+  <!-- Job results section -->
+  <div id="job-results" class="w-full max-w-6xl mx-auto px-4 py-10 relative z-10">
+    <!-- Results header -->
+    <div class="mb-8">
+      <div class="flex justify-between items-center mb-4">
+        <a href="<%= resumes_path %>" class="flex items-center text-emerald-600 hover:text-emerald-800 hover:bg-emerald-50 px-3 py-2 rounded-lg transition-all duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+          </svg>
+          Upload Another Resume
+        </a>
+      </div>
+
+      <div class="text-center">
+        <h1 class="text-3xl font-bold text-slate-800 mb-2">Ruby on Rails Jobs</h1>
+        <p class="text-lg text-slate-600">Matched <span class="font-medium text-emerald-600"><%= @dummy_jobs.count %></span> jobs based on your resume</p>
+      </div>
+    </div>
+
+    <!-- Job listings -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <% @dummy_jobs.each_with_index do |job, index| %>
+        <a href="<%= job[:url] %>" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
+          <div class="p-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="text-xl font-semibold text-slate-800 mb-2"><%= job[:title] %></h3>
+                <p class="text-slate-600 mb-1"><%= job[:company] %></p>
+                <p class="text-sm text-slate-500 mb-4"><%= job[:location] %></p>
+              </div>
+              <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full"><%= job[:job_type] %></span>
+            </div>
+
+            <div class="mb-4">
+              <p class="text-slate-700 line-clamp-3"><%= job[:summary] || job[:description] %></p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
+              <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
+            </div>
+
+            <div class="flex justify-between items-center">
+              <span class="text-slate-600 font-medium"><%= job[:salary] %></span>
+              <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
+            </div>
+          </div>
+        </a>
+      <% end %>
+    </div>
+    
+    <!-- Pagination -->
+    <div class="mt-10 flex justify-center">
+      <nav class="inline-flex rounded-md shadow">
+        <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-l-md border border-slate-300">Previous</a>
+        <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 border-t border-b border-slate-300">1</a>
+        <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-r-md border border-slate-300">Next</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Animate job cards sequentially
+    const jobCards = document.querySelectorAll('.job-card');
+    jobCards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('animate');
+      }, 100 + (index * 150));
+    });
+  });
+</script>

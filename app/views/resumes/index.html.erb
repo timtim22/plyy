@@ -98,224 +98,8 @@
   </div>
 
   <!-- Job results section (hidden by default) -->
-  <div id="job-results" class="hidden w-full max-w-6xl mx-auto px-4 py-10 relative z-10">
-    <!-- Results header -->
-    <div class="mb-8">
-      <div class="flex justify-between items-center mb-4">
-        <button id="back-to-upload" class="flex items-center text-emerald-600 hover:text-emerald-800 hover:bg-emerald-50 px-3 py-2 rounded-lg transition-all duration-300">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-          </svg>
-          Upload Another Resume
-        </button>
-      </div>
+  <!-- Moved to show.html.erb -->
 
-      <div class="text-center">
-        <h1 class="text-3xl font-bold text-slate-800 mb-2">Ruby on Rails Jobs</h1>
-        <p class="text-lg text-slate-600">Matched <span class="font-medium text-emerald-600" id="matched-jobs-count">0</span> jobs based on your resume</p>
-      </div>
-    </div>
-
-    <!-- Job listings -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Job Card 1 -->
-      <a href="https://example.com/jobs/senior-rails-developer" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
-        <div class="p-6">
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="text-xl font-semibold text-slate-800 mb-2">Senior Ruby on Rails Developer</h3>
-              <p class="text-slate-600 mb-1">Acme Tech Solutions</p>
-              <p class="text-sm text-slate-500 mb-4">San Francisco, CA (Remote)</p>
-            </div>
-            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
-          </div>
-
-          <div class="mb-4">
-            <p class="text-slate-700 line-clamp-3">We're looking for an experienced Ruby on Rails developer to join our dynamic team. You'll work on building and maintaining complex web applications, implementing new features, and ensuring code quality.</p>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">PostgreSQL</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">React</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">AWS</span>
-          </div>
-
-          <div class="flex justify-between items-center">
-            <span class="text-slate-600 font-medium">$120K - $150K</span>
-            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Job Card 2 -->
-      <a href="https://example.com/jobs/rails-backend" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
-        <div class="p-6">
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="text-xl font-semibold text-slate-800 mb-2">Rails Backend Engineer</h3>
-              <p class="text-slate-600 mb-1">Tech Innovators Inc.</p>
-              <p class="text-sm text-slate-500 mb-4">New York, NY (Hybrid)</p>
-            </div>
-            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
-          </div>
-
-          <div class="mb-4">
-            <p class="text-slate-700 line-clamp-3">Join our backend team to build scalable and performant APIs. You'll be designing database schemas, implementing business logic, and optimizing application performance for our growing user base.</p>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">MySQL</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Redis</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Sidekiq</span>
-          </div>
-
-          <div class="flex justify-between items-center">
-            <span class="text-slate-600 font-medium">$110K - $140K</span>
-            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Job Card 3 -->
-      <a href="https://example.com/jobs/fullstack-ruby" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
-        <div class="p-6">
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="text-xl font-semibold text-slate-800 mb-2">Full Stack Ruby Developer</h3>
-              <p class="text-slate-600 mb-1">StartupBoost</p>
-              <p class="text-sm text-slate-500 mb-4">Austin, TX (Remote)</p>
-            </div>
-            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Contract</span>
-          </div>
-
-          <div class="mb-4">
-            <p class="text-slate-700 line-clamp-3">Looking for a versatile full-stack developer to help build our SaaS platform. You'll be working on both frontend and backend, implementing new features, fixing bugs, and collaborating with product teams.</p>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">JavaScript</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Vue.js</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Heroku</span>
-          </div>
-
-          <div class="flex justify-between items-center">
-            <span class="text-slate-600 font-medium">$90K - $120K</span>
-            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Job Card 4 -->
-      <a href="https://example.com/jobs/rails-team-lead" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
-        <div class="p-6">
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="text-xl font-semibold text-slate-800 mb-2">Ruby on Rails Team Lead</h3>
-              <p class="text-slate-600 mb-1">Enterprise Solutions Ltd.</p>
-              <p class="text-sm text-slate-500 mb-4">Chicago, IL (On-site)</p>
-            </div>
-            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
-          </div>
-
-          <div class="mb-4">
-            <p class="text-slate-700 line-clamp-3">Lead a team of Ruby on Rails developers in building enterprise applications. You'll oversee architecture decisions, mentor junior developers, and collaborate with stakeholders to deliver high-quality solutions.</p>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">PostgreSQL</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Docker</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">CI/CD</span>
-          </div>
-
-          <div class="flex justify-between items-center">
-            <span class="text-slate-600 font-medium">$140K - $170K</span>
-            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Job Card 5 -->
-      <a href="https://example.com/jobs/junior-rails-dev" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
-        <div class="p-6">
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="text-xl font-semibold text-slate-800 mb-2">Junior Rails Developer</h3>
-              <p class="text-slate-600 mb-1">WebDev Solutions</p>
-              <p class="text-sm text-slate-500 mb-4">Denver, CO (Remote)</p>
-            </div>
-            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Full-time</span>
-          </div>
-
-          <div class="mb-4">
-            <p class="text-slate-700 line-clamp-3">Great opportunity for developers early in their career! Learn and grow with our supportive team while building real-world applications. We provide mentorship and a structured learning path.</p>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">HTML/CSS</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">JavaScript</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Git</span>
-          </div>
-
-          <div class="flex justify-between items-center">
-            <span class="text-slate-600 font-medium">$70K - $90K</span>
-            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Job Card 6 -->
-      <a href="https://example.com/jobs/ruby-api-dev" target="_blank" class="block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300">
-        <div class="p-6">
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="text-xl font-semibold text-slate-800 mb-2">Ruby API Developer</h3>
-              <p class="text-slate-600 mb-1">FinTech Innovators</p>
-              <p class="text-sm text-slate-500 mb-4">Boston, MA (Hybrid)</p>
-            </div>
-            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Part-time</span>
-          </div>
-
-          <div class="mb-4">
-            <p class="text-slate-700 line-clamp-3">Create robust API services for our financial technology platform. You'll be responsible for designing and implementing secure, scalable APIs that power our customer-facing applications.</p>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails API</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">OAuth</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">JWT</span>
-            <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Microservices</span>
-          </div>
-
-          <div class="flex justify-between items-center">
-            <span class="text-slate-600 font-medium">$65/hr</span>
-            <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Pagination -->
-    <div class="mt-10 flex justify-center">
-      <nav class="inline-flex rounded-md shadow">
-        <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-l-md border border-slate-300">Previous</a>
-        <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 border-t border-b border-slate-300">1</a>
-        <a href="#" class="px-4 py-2 bg-emerald-50 text-sm font-medium text-emerald-600 border-t border-b border-slate-300">2</a>
-        <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 border-t border-b border-slate-300">3</a>
-        <a href="#" class="px-4 py-2 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-r-md border border-slate-300">Next</a>
-      </nav>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -327,12 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const fileNameElement = document.getElementById('file-name');
   const progressBar = document.getElementById('progress-bar');
   const jobsFoundElement = document.getElementById('jobs-found');
-  const jobResultsSection = document.getElementById('job-results');
-  const uploadSection = document.querySelector('.flex.justify-center.items-center.min-h-screen');
-  const backToUploadButton = document.getElementById('back-to-upload');
-
-  // Get job cards container for dynamic generation
-  const jobCardsContainer = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.gap-6');
 
   // Loading text variations
   const loadingTexts = [
@@ -378,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }, 300);
         }
 
-        // If search is complete, fetch results and show them
+        // If search is complete, redirect to the results page
         if (data.completed) {
           clearInterval(pollingTimer);
           clearInterval(textInterval);
@@ -386,52 +164,8 @@ document.addEventListener('DOMContentLoaded', function() {
           // Ensure progress bar shows 100%
           progressBar.style.width = '100%';
 
-          // Fetch the completed search results
-          fetch(`/resumes/${currentSearchId}`)
-            .then(response => response.json())
-            .then(searchData => {
-              if (searchData.success) {
-                // Update job results count in the results view
-                const jobCountElement = document.querySelector('#matched-jobs-count');
-                if (jobCountElement) {
-                  jobCountElement.textContent = searchData.job_count || searchData.search_results?.length || 0;
-                }
-
-                // Clear any existing job cards
-                jobCardsContainer.innerHTML = '';
-
-                // Create job cards from the data
-                const jobsArray = searchData.jobs || searchData.search_results || [];
-                console.log('Jobs to display:', jobsArray);
-                jobsArray.forEach((job, index) => {
-                  const jobCard = createJobCard(job, index);
-                  jobCardsContainer.appendChild(jobCard);
-                });
-
-                // Show job results
-                setTimeout(function() {
-                  // Hide loading state and the entire upload section
-                  loadingState.classList.add('hidden');
-                  uploadSection.classList.add('hidden');
-
-                  // Show job results section
-                  jobResultsSection.classList.remove('hidden');
-
-                  // Animate job cards sequentially
-                  animateJobCards();
-
-                  // Scroll to top smoothly
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-                  // Reset the file input for future uploads
-                  fileInput.value = '';
-                  fileNameElement.textContent = '';
-                }, 800);
-              }
-            })
-            .catch(error => {
-              console.error('Error fetching search results:', error);
-            });
+          // Redirect to the results page
+          window.location.href = `/resumes/${currentSearchId}`;
         }
       })
       .catch(error => {
@@ -439,98 +173,9 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 
-  // Function to create a job card
-  function createJobCard(job, index) {
-    console.log('Creating job card for:', job);
-
-    const card = document.createElement('a');
-    card.href = job.url || '#';
-    card.target = "_blank";
-    card.className = "block job-card opacity-0 bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 hover:border-emerald-300";
-
-    // Job type badge
-    const jobType = job.job_type || "Full-time"; // Use job type if available
-
-    // Display work setting badge if available
-    const workSetting = job.work_setting && job.work_setting !== "Not specified"
-      ? `<span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full ml-2">${job.work_setting}</span>`
-      : '';
-
-    // Display salary if available
-    const salaryDisplay = job.salary && job.salary !== "Not specified"
-      ? `<span class="text-slate-600 font-medium">${job.salary}</span>`
-      : `<span class="text-slate-600 font-medium">Apply Now</span>`;
-
-    // Display reference number if available
-    const refDisplay = job.reference_number
-      ? `<div class="text-xs text-slate-500 mb-2">Ref: ${job.reference_number}</div>`
-      : '';
-
-    card.innerHTML = `
-      <div class="p-6">
-        <div class="flex justify-between items-start">
-          <div>
-            <h3 class="text-xl font-semibold text-slate-800 mb-2">${job.title || 'Job Title'}</h3>
-            <p class="text-slate-600 mb-1">${job.company || 'Company'}</p>
-            <p class="text-sm text-slate-500 mb-1">${job.location || 'Location'}</p>
-            ${refDisplay}
-          </div>
-          <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-full">${jobType}</span>
-          ${workSetting}
-        </div>
-
-        <div class="mb-4">
-          <p class="text-slate-700 line-clamp-3">${job.description || job.summary || 'No description available'}</p>
-        </div>
-
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Ruby</span>
-          <span class="bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded">Rails</span>
-        </div>
-
-        <div class="flex justify-between items-center">
-          ${salaryDisplay}
-          <span class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors duration-300">View Job Details</span>
-        </div>
-      </div>
-    `;
-
-    return card;
-  }
-
-  // Function to animate job cards sequentially
-  function animateJobCards() {
-    const jobCards = document.querySelectorAll('.job-card');
-    console.log(`Animating ${jobCards.length} job cards`);
-    jobCards.forEach((card, index) => {
-      setTimeout(() => {
-        card.classList.add('animate');
-        card.style.opacity = '1';
-      }, 100 + (index * 300)); // 300ms delay between each card
-    });
-  }
-
   // Trigger file input when button is clicked
   uploadButton.addEventListener('click', function() {
     fileInput.click();
-  });
-
-  // Handle Back to Upload button click
-  backToUploadButton.addEventListener('click', function() {
-    // Hide job results
-    jobResultsSection.classList.add('hidden');
-
-    // Reset job card animations
-    const jobCards = document.querySelectorAll('.job-card');
-    jobCards.forEach(card => {
-      card.classList.remove('animate');
-    });
-
-    // Show upload section
-    uploadSection.classList.remove('hidden');
-
-    // Show upload button
-    uploadButton.classList.remove('hidden');
   });
 
   // Handle file selection

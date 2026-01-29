@@ -58,7 +58,7 @@ class ResumesController < ApplicationController
   
   def show
     # Just return dummy data
-    dummy_jobs = [
+    @dummy_jobs = [
       {
         title: "Senior Ruby Developer",
         company: "Tech Corp",
@@ -97,12 +97,18 @@ class ResumesController < ApplicationController
       }
     ]
     
-    render json: {
-      success: true,
-      job_count: dummy_jobs.count,
-      jobs: dummy_jobs,
-      search_results: dummy_jobs
-    }
+    # If the request wants JSON (e.g. for some API call), return it, otherwise render the view
+    respond_to do |format|
+      format.html # renders show.html.erb
+      format.json do
+        render json: {
+          success: true,
+          job_count: @dummy_jobs.count,
+          jobs: @dummy_jobs,
+          search_results: @dummy_jobs
+        }
+      end
+    end
   end
 
   private
