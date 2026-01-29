@@ -9,132 +9,105 @@ class ResumesController < ApplicationController
   def create
     # Create a dummy user if not signed in
     user = user_signed_in? ? current_user : User.create!(
-      email: "guest_#{Time.now.to_i}#{rand(100)}@example.com",
+      email: "guest_#{Time.now.to_i}#{rand(1000)}@example.com",
       password: SecureRandom.hex(10)
     )
     
-    @resume = Resume.new(
+    # Create a dummy resume record
+    @resume = Resume.create!(
       user: user,
       filename: resume_params[:file].original_filename,
-      parsed_text: "Sample parsed text" # We'll just use a placeholder for now
+      parsed_text: "DUMMY TEXT"
     )
 
-    # we get the job_title from the LLM/API
-
-    if @resume.save
-      text = ""
-      reader = PDF::Reader.new(resume_params[:file].tempfile)
-      reader.pages.each do |page|
-        text << page.text
-      end
-      clean_text = text
-                  .gsub(/\n+/, "\n")
-                  .gsub(/[ \t]{2,}/, ' ')
-                  .gsub(/\s+\n/, "\n")
-                  .strip  
-      job_title = get_job_title(clean_text)
-      # binding.pry
-      # Create a new search associated with this resume
-      search = Search.create(user: user, resume: @resume, completed: false)
+    # Create a new search associated with this resume
+    # We use created_at to track the fake progress
+    search = Search.create!(user: user, resume: @resume, completed: false)
       
-      # Start job fetching in a background thread
-      Thread.new do
-        # Find or create job type if provided
-        job_type = nil
-        
-        # Use IndeedFetchJob to get job listings
-        fetch_job = IndeedFetchJob.new(search.id, job_title)
-        job_data = fetch_job.fetch_jobs
-        
-        # Save job details as search results
-        job_data.each do |job|
-          # Find or create job type
-          if job[:job_type].present? && job[:job_type] != "Unknown"
-            job_type = JobType.find_or_create_by(name: job[:job_type])
-          end
-          
-          # Create the search result with all details
-          search_result = search.search_results.create(
-            title: job[:title],
-            company: job[:company],
-            location: job[:location],
-            summary: job[:summary],
-            description: job[:description],
-            salary: job[:salary],
-            work_setting: job[:work_setting],
-            reference_number: job[:reference_number],
-            url: job[:url]
-          )
-          
-          # Associate job type if found
-          if job_type && search_result.persisted?
-            search.job_types << job_type unless search.job_types.include?(job_type)
-          end
-        end
-        
-        # Mark search as complete
-        search.update(completed: true)
-      end
-      
-      # Return the search ID for progress tracking
-      render json: { 
-        success: true, 
-        search_id: search.id
-      }
-    else
-      render json: { success: false, errors: @resume.errors.full_messages }, status: :unprocessable_entity
-    end
+    # Return the search ID for progress tracking
+    render json: { 
+      success: true, 
+      search_id: search.id
+    }
+  rescue => e
+    render json: { success: false, errors: [e.message] }, status: :unprocessable_entity
   end
   
   def job_progress
-    search_id = params[:search_id]
-    progress_file = "#{Rails.root}/tmp/job_progress_#{search_id}.json"
+    search = Search.find_by(id: params[:search_id])
     
-    if File.exist?(progress_file)
-      progress = JSON.parse(File.read(progress_file))
-      render json: progress
+    if search
+      # Calculate progress based on time since creation
+      # Run for about 5-8 seconds
+      target_duration = 6.0 
+      elapsed = Time.now - search.created_at
+      
+      if elapsed < target_duration
+        # progress is proportional to time
+        # limit to 9 jobs until complete
+        fake_job_count = [(elapsed / target_duration * 10).to_i, 9].min
+        render json: { job_count: fake_job_count, total_target: 10, completed: false }
+      else
+        search.update(completed: true) unless search.completed?
+        render json: { job_count: 10, total_target: 10, completed: true }
+      end
     else
-      render json: { job_count: 0, total_target: 10, completed: false }
+       render json: { job_count: 0, total_target: 10, completed: false }
     end
   end
   
   def show
-    search = Search.find_by(id: params[:id])
-    
-    if search
-      search_results = search.search_results.to_a
-      render json: {
-        success: true,
-        job_count: search_results.count,
-        jobs: search_results,
-        search_results: search_results
+    # Just return dummy data
+    dummy_jobs = [
+      {
+        title: "Senior Ruby Developer",
+        company: "Tech Corp",
+        location: "Remote",
+        summary: "Great job working with Ruby and building scalable applications.",
+        description: "Full description here...",
+        salary: "$120k - $150k",
+        work_setting: "Remote",
+        url: "https://example.com/job1",
+        job_type: "Full-time",
+        reference_number: "REF-1234"
+      },
+      {
+        title: "Rails Engineer",
+        company: "Startup Inc",
+        location: "New York, NY",
+        summary: "Build cool things in a fast-paced environment.",
+        description: "Full description...",
+        salary: "$100k - $130k",
+        work_setting: "Hybrid",
+        url: "https://example.com/job2",
+        job_type: "Full-time",
+        reference_number: "REF-5678"
+      },
+       {
+        title: "Backend Engineer",
+        company: "Data Systems",
+        location: "San Francisco, CA",
+        summary: "Scale our systems and optimize database performance.",
+        description: "Full description...",
+        salary: "$140k - $180k",
+        work_setting: "On-site",
+        url: "https://example.com/job3",
+        job_type: "Full-time",
+        reference_number: "REF-9012"
       }
-    else
-      render json: { success: false, error: "Search not found" }, status: :not_found
-    end
+    ]
+    
+    render json: {
+      success: true,
+      job_count: dummy_jobs.count,
+      jobs: dummy_jobs,
+      search_results: dummy_jobs
+    }
   end
 
   private
 
   def resume_params
     params.require(:resume).permit(:file)
-  end
-
-  def get_job_title(text)
-    api_key = ENV['OPENROUTER_API_KEY']
-    response = HTTParty.post("https://openrouter.ai/api/v1/chat/completions",
-      headers: {
-        "Authorization" => "Bearer #{api_key}",
-        "Content-Type" => "application/json"
-      },
-      body: {
-        model: "mistralai/mistral-small", # or use "mistralai/mistral-7b-instruct"
-        messages: [
-          { role: "user", content: "Based on the resume text below, extract the most relevant programming-language-specific job title this person would most likely search for jobs under. Respond with only one word, such as 'Ruby', 'Python', 'React', etc. Avoid generic terms like 'Developer' or 'Engineer'. Resume Text: #{text}" }
-        ],
-        temperature: 0.2
-      }.to_json
-    )
-    JSON.parse(response.body).dig("choices", 0, "message", "content")
   end
 end
