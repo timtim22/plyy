@@ -26,7 +26,7 @@
 <!-- OPTION 1: Minimalist abstract art (medium tones) -->
 <div id="option1" class="min-h-screen w-full flex flex-col items-center option1-bg relative overflow-hidden">
   <!-- Navbar -->
-  <div class="w-full px-4 py-4 flex justify-end items-center relative z-20">
+  <div class="w-full px-4 py-4 flex justify-end items-center relative z-50">
     <div class="flex space-x-3">
       <% if user_signed_in? %>
         <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg", form: { class: "inline-block" } %>
