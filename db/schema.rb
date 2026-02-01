@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_09_181147) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_30_065058) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -75,6 +75,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_09_181147) do
     t.string "salary"
     t.string "work_setting"
     t.string "reference_number"
+    t.boolean "saved", default: false
     t.index ["search_id"], name: "index_search_results_on_search_id"
   end
 
@@ -84,6 +85,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_09_181147) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "completed"
+    t.integer "duration_seconds"
     t.index ["resume_id"], name: "index_searches_on_resume_id"
     t.index ["user_id"], name: "index_searches_on_user_id"
   end
