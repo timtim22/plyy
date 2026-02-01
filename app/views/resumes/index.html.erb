@@ -28,8 +28,12 @@
   <!-- Navbar -->
   <div class="w-full px-4 py-4 flex justify-end items-center relative z-20">
     <div class="flex space-x-3">
-      <a href="/users/sign_in" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg">Log In</a>
-      <a href="/users/sign_up" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg">Sign Up</a>
+      <% if user_signed_in? %>
+        <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg", form: { class: "inline-block" } %>
+      <% else %>
+        <a href="/users/sign_in" data-turbo="false" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg">Log In</a>
+        <a href="/users/sign_up" data-turbo="false" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg">Sign Up</a>
+      <% end %>
     </div>
   </div>
 
